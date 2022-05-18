@@ -46,9 +46,11 @@ function generateMaze(e) {
 
   newMaze = new Maze(mazeSize, number, number);
   newMaze.setup();
+  current = newMaze.grid[Math.floor(Math.random() * newMaze.columns)][Math.floor(Math.random() * newMaze.columns)]
   newMaze.createMaze();
   newMaze.draw();
   newMaze.grid[0][0].highlight(newMaze.columns)
+  current = newMaze.grid[0][0];
 }
 
 function move(e) {
@@ -56,6 +58,7 @@ function move(e) {
   let key = e.key;
   let row = current.rowNum;
   let col = current.colNum;
+  if (current.goal) return;
 
   switch (key) {
     case "ArrowUp":
