@@ -46,7 +46,9 @@ function generateMaze(e) {
 
   newMaze = new Maze(mazeSize, number, number);
   newMaze.setup();
+  newMaze.createMaze();
   newMaze.draw();
+  newMaze.grid[0][0].highlight(newMaze.columns)
 }
 
 function move(e) {
