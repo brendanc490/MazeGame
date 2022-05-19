@@ -4,8 +4,10 @@ let rowsCols = document.querySelector("#number");
 let complete = document.querySelector(".complete");
 let replay = document.querySelector(".replay");
 let close = document.querySelector(".close");
+let text = document.getElementsByClassName("timer");
 
 let newMaze;
+let completedGame = false;
 
 form.addEventListener("submit", generateMaze);
 document.addEventListener("keydown", move);
@@ -35,7 +37,7 @@ function generateMaze(e) {
     return alert("Please enter a number of columns");
   }
 
-  let mazeSize = 900;
+  let mazeSize = 800;
   let number = rowsCols.value;
   if (number > 100) {
     alert("Maze too large!");
@@ -48,10 +50,27 @@ function generateMaze(e) {
   newMaze.setup();
   current = newMaze.grid[Math.floor(Math.random() * newMaze.columns)][Math.floor(Math.random() * newMaze.columns)]
   newMaze.createMaze();
+  document.getElementById('timer').innerHTML = "Timer: " + number*2;
   newMaze.draw();
   newMaze.grid[0][0].highlight(newMaze.columns)
   current = newMaze.grid[0][0];
+  text[0].style.display = "block";
+
+  var sec = number*2;
+  var time = setInterval(myTimer, 1000);
+  
+  function myTimer() {
+      document.getElementById('timer').innerHTML = "Timer: " + sec;
+      sec--;
+      if (sec == -1) {
+          clearInterval(time);
+          alert("Time's up!");
+      } else if (completedGame) {
+        clearInterval(time);
+      }
+  }
 }
+
 
 function move(e) {
   if (!generationComplete) return;
@@ -68,7 +87,7 @@ function move(e) {
         newMaze.draw();
         current.highlight(newMaze.columns);
         // not required if goal is in bottom right
-        if (current.goal) complete.style.display = "block";
+        if (current.goal) {completedGame = true; complete.style.display = "block";}
       }
       break;
 
@@ -78,7 +97,7 @@ function move(e) {
         current = next;
         newMaze.draw();
         current.highlight(newMaze.columns);
-        if (current.goal) complete.style.display = "block";
+        if (current.goal) {completedGame = true; complete.style.display = "block";}
       }
       break;
 
@@ -88,7 +107,7 @@ function move(e) {
         current = next;
         newMaze.draw();
         current.highlight(newMaze.columns);
-        if (current.goal) complete.style.display = "block";
+        if (current.goal) {completedGame = true; complete.style.display = "block";}
       }
       break;
 
@@ -99,7 +118,7 @@ function move(e) {
         newMaze.draw();
         current.highlight(newMaze.columns);
         // not required if goal is in bottom right
-        if (current.goal) complete.style.display = "block";
+        if (current.goal) {completedGame = true; complete.style.display = "block";}
       }
       break;
 	  
@@ -110,7 +129,7 @@ function move(e) {
         newMaze.draw();
         current.highlight(newMaze.columns);
         // not required if goal is in bottom right
-        if (current.goal) complete.style.display = "block";
+        if (current.goal) {completedGame = true; complete.style.display = "block";}
       }
       break;
 
@@ -120,7 +139,7 @@ function move(e) {
         current = next;
         newMaze.draw();
         current.highlight(newMaze.columns);
-        if (current.goal) complete.style.display = "block";
+        if (current.goal) {completedGame = true; complete.style.display = "block";}
       }
       break;
 
@@ -130,7 +149,7 @@ function move(e) {
         current = next;
         newMaze.draw();
         current.highlight(newMaze.columns);
-        if (current.goal) complete.style.display = "block";
+        if (current.goal) {completedGame = true; complete.style.display = "block";}
       }
       break;
 
@@ -141,7 +160,7 @@ function move(e) {
         newMaze.draw();
         current.highlight(newMaze.columns);
         // not required if goal is in bottom right
-        if (current.goal) complete.style.display = "block";
+        if (current.goal) {completedGame = true; complete.style.display = "block";}
       }
       break;
 	  
