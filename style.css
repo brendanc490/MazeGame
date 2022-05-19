@@ -74,7 +74,16 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 10%;
+    top: 5%;
+    color: #000000;
+    font-family: "Bungee Inline", cursive;
+  }
+
+  .timer {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0%;
     color: #000000;
     font-family: "Bungee Inline", cursive;
   }
