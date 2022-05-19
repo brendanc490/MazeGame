@@ -29,6 +29,7 @@ class Maze {
     // Set the starting grid
     current = this.grid[0][0];
     this.grid[this.rows - 1][this.columns - 1].goal = true;
+
   }
   
   // Draw the canvas by setting the size and placing the cells in the grid array on the canvas.
