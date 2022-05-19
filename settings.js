@@ -102,5 +102,48 @@ function move(e) {
         if (current.goal) complete.style.display = "block";
       }
       break;
+	  
+	 case "w":
+      if (!current.walls.topWall) {
+        let next = newMaze.grid[row - 1][col];
+        current = next;
+        newMaze.draw();
+        current.highlight(newMaze.columns);
+        // not required if goal is in bottom right
+        if (current.goal) complete.style.display = "block";
+      }
+      break;
+
+    case "d":
+      if (!current.walls.rightWall) {
+        let next = newMaze.grid[row][col + 1];
+        current = next;
+        newMaze.draw();
+        current.highlight(newMaze.columns);
+        if (current.goal) complete.style.display = "block";
+      }
+      break;
+
+    case "s":
+      if (!current.walls.bottomWall) {
+        let next = newMaze.grid[row + 1][col];
+        current = next;
+        newMaze.draw();
+        current.highlight(newMaze.columns);
+        if (current.goal) complete.style.display = "block";
+      }
+      break;
+
+    case "a":
+      if (!current.walls.leftWall) {
+        let next = newMaze.grid[row][col - 1];
+        current = next;
+        newMaze.draw();
+        current.highlight(newMaze.columns);
+        // not required if goal is in bottom right
+        if (current.goal) complete.style.display = "block";
+      }
+      break;
+	  
   }
 }
