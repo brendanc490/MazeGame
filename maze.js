@@ -85,6 +85,17 @@ class Maze {
 
   show_start
 
+
+
+
+  solution(){
+    //greg code go here
+  }
+
+
+
+  
+
   draw(){
     maze.width = this.size;
     maze.height = this.size;
