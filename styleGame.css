@@ -84,6 +84,20 @@
     text-align: center;
     border-radius: 10px;
   }
+
+  .freeplay {
+    display: none;
+    position: absolute;
+    top: 15%;
+    left: 7.5%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 30%;
+    z-index: 4;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 10px;
+  }
   
   .title {
     position: absolute;
