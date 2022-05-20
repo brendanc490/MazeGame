@@ -36,9 +36,16 @@ class Maze {
   createMaze() {
     maze.width = this.size;
     maze.height = this.size;
+    //maze.style.background = "black";
     // Set the first cell as visited
     current.visited = true;
     // Loop through the 2d grid array and call the show method for each cell instance
+    /*for (let r = 0; r < this.rows; r++) {
+      for (let c = 0; c < this.columns; c++) {
+        let grid = this.grid;
+        grid[r][c].show(this.size, this.rows, this.columns);
+      }
+    }*/
     // This function will assign the variable 'next' to random cell out of the current cells available neighbouting cells
     let next = current.checkNeighbours();
     // If there is a non visited neighbour cell
@@ -48,6 +55,7 @@ class Maze {
       this.stack.push(current);
       // this function will highlight the current cell on the grid. The parameter columns is passed
       // in order to set the size of the cell
+      /*current.highlight(this.columns);*/
       // This function compares the current cell to the next cell and removes the relevant walls for each cell
       current.removeWalls(current, next);
       // Set the nect cell to the current cell
@@ -66,7 +74,13 @@ class Maze {
     }
 
     // Recursively call the draw function. This will be called up until the stack is empty
+    /*window.requestAnimationFrame(() => {
+      this.draw();
+    });*/
     this.createMaze();
+    //     setTimeout(() => {rd
+    //       this.draw();
+    //     }, 10);
   }
 
   show_start
@@ -171,7 +185,7 @@ class Cell {
 
     return neighbours;
   }
-  
+
   checkNeighbours() {
     let grid = this.parentGrid;
     let row = this.rowNum;
@@ -243,6 +257,19 @@ class Cell {
     );
   }
 
+  highlightSolution(columns) {
+    // Additions and subtractions added so the highlighted cell does cover the walls
+    let x = (this.colNum * this.parentSize) / columns + 1;
+    let y = (this.rowNum * this.parentSize) / columns + 1;
+    ctx.fillStyle = "purple";
+    ctx.fillRect(
+      x,
+      y,
+      this.parentSize / columns - 3,
+      this.parentSize / columns - 3
+    );
+  }
+
   removeWalls(cell1, cell2) {
     // compares to two cells on x axis
     let x = cell1.colNum - cell2.colNum;
@@ -270,6 +297,8 @@ class Cell {
   show(size, rows, columns) {
     let x = (this.colNum * size) / columns;
     let y = (this.rowNum * size) / rows;
+    // console.log(`x =${x}`);
+    // console.log(`y =${y}`);
     ctx.strokeStyle = "#ffffff";
     if (this.rowNum === 0 && this.colNum === 0){
       ctx.fillStyle = "red"
@@ -290,3 +319,7 @@ class Cell {
     }
   }
 }
+
+// let newMaze = new Maze(600, 50, 50);
+// newMaze.setup();
+// newMaze.draw();
