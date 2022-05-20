@@ -13,16 +13,22 @@
     <h1 class="title">Maze Game</h1>
 
     <div class="complete">
-      <h3>Maze Completed.</h3>
-      <button class="replay" id="submit">Play again</button>
+      <h3>Maze Completed!</h3>
+      <button class="replay" id="submit">Next Level</button>
       <button class="close" id="submit">Close</button>
     </div>
+
+    <div class="lost">
+        <h4>Times up!</h4>
+        <button class="replay2" id="submit">Play again</button>
+        <button class="close2" id="submit">Close</button>
+      </div>
     
       <form id="settings" action="">
         <font size="+2">Insert desired size of maze: (Max: 100*100)</font>
           <br>
 		  <br>
-          <font size="+1">Use W,A,S,D or Arrow Keys to move</font>
+          <font size="+1">Use W,A,S,D or Arrow Keys to move. R key resets to initial position.</font>
           <br>
 		  <br>
           <br>
@@ -30,10 +36,11 @@
          |
          |
          v
-        <input id="size" type="number" value="500"/></br>-->
+        <input id="size" type="number" value="500"/></br>
         <font size="+1">Rows/columns</font><br>
-        <input id="number" type="number" value="20" /></br>
+        <input id="number" type="number" value="20" /></br>-->
         <input id="submit" type="submit" value="Generate Maze">
+        
       </form>
   
       
@@ -41,6 +48,8 @@
     <canvas class="maze"></canvas>
     <script src="maze.js"></script>
     <script src="settings.js"></script>
-    Timer:<h2 class="timer" id="timer" style='display: none'>Timer: 15</h1>
+    <h1 class="timer" id="timer" style='display: none'></h1>
+    <h1 class="level" id="level" style='display: none'></h1>
+    <h1 class="score" id="score" style='display: none'></h1>
   </body>
 </html>
