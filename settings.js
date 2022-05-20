@@ -58,7 +58,7 @@ explore.addEventListener("click", () => {
   viewSolution.addEventListener("click", () => {
     let sol = newMaze.solution();
     for(i = 0; i < sol.length; i++) {
-        sol[i].highlightSolution(newMaze.columns);
+        sol[i].highlightSolution(sol[i+1],newMaze.columns);
     }
   });
 
