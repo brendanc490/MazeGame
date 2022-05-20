@@ -85,17 +85,50 @@ class Maze {
 
   show_start
 
-
-
-
   solution(){
     //greg code go here
+    
+    //makes 2D matrix to track predecessors
+    let predMatrix = new Array(this.rows);
+    for(let r = 0; r < this.rows; r++){
+      predMatrix[r] = new Array(this.columns);
+    }
+
+    let finishedSet = new Set();
+    let discoveredQueue = [];
+    discoveredQueue.push(this.grid[0][0]);
+
+    while(predMatrix[this.rows - 1][this.columns - 1] == undefined){
+      let curCell = discoveredQueue.shift();
+      console.log(typeof curCell);
+      let curNeighbors = curCell.getNeighboursArray(); 
+
+      for(let i = 0; i < curNeighbors.length; i++){
+        if(!finishedSet.has(curNeighbors[i]) && !discoveredQueue.includes(curNeighbors[i]) && curNeighbors[i] != undefined){
+          discoveredQueue.push(curNeighbors[i]);
+          predMatrix[curNeighbors[i].rowNum][curNeighbors[i].colNum] = curCell;
+        }
+      }
+
+      finishedSet.add(curCell);
+    }
+
+    let output = [];
+    let cur = this.grid[this.rows - 1][this.columns - 1];
+    while(cur){
+      output.push(cur);
+      cur = predMatrix[cur.rowNum][cur.colNum];
+    }
+
+    output = output.reverse();
+
+    for(let i = 0; i < output.length; i++){
+      console.log(output[i].rowNum + ", " + output[i].colNum);
+    }
+
+    return output;
   }
-
-
-
   
-
   draw(){
     maze.width = this.size;
     maze.height = this.size;
