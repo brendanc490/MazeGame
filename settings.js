@@ -6,7 +6,7 @@ let lost = document.querySelector(".lost");
 let replayWin = document.querySelector(".replay");
 let closeWin = document.querySelector(".close");
 let replayLoss = document.querySelector(".replay2");
-let closeLoss = document.querySelector(".close2");
+let viewSolution = document.querySelector(".viewSolution");
 let textTimer = document.getElementsByClassName("timer");
 let textScore = document.getElementsByClassName("score");
 let textLevel = document.getElementsByClassName("level");
@@ -39,8 +39,9 @@ replayLoss.addEventListener("click", () => {
     location.reload();
   });
   
-  closeLoss.addEventListener("click", () => {
+  viewSolution.addEventListener("click", () => {
     lost.style.display = "none";
+    newMaze.solution();
   });
 
   function myTimer() {
