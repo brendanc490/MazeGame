@@ -164,6 +164,28 @@ class Cell {
     this.parentSize = parentSize;
   }
 
+  getNeighboursArray(){
+    let grid = this.parentGrid;
+    let row = this.rowNum;
+    let col = this.colNum;
+    let neighbours = [];
+
+    // The following lines push all available neighbours to the neighbours array
+    // undefined is returned where the index is out of bounds (edge cases)
+    let top = row !== 0 ? grid[row - 1][col] : undefined;
+    let right = col !== grid.length - 1 ? grid[row][col + 1] : undefined;
+    let bottom = row !== grid.length - 1 ? grid[row + 1][col] : undefined;
+    let left = col !== 0 ? grid[row][col - 1] : undefined;
+
+    // if the following are not 'undefined' then push them to the neighbours array
+    if (top && !this.walls.topWall) neighbours.push(top);
+    if (right && !this.walls.rightWall) neighbours.push(right);
+    if (bottom && !this.walls.bottomWall) neighbours.push(bottom);
+    if (left && !this.walls.leftWall) neighbours.push(left);
+
+    return neighbours;
+  }
+  
   checkNeighbours() {
     let grid = this.parentGrid;
     let row = this.rowNum;
