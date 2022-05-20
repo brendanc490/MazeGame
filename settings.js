@@ -56,7 +56,10 @@ explore.addEventListener("click", () => {
   });
   
   viewSolution.addEventListener("click", () => {
-    newMaze.solution();
+    let sol = newMaze.solution();
+    for(i = 0; i < sol.length; i++) {
+        sol[i].highlightSolution(newMaze.columns);
+    }
   });
 
   function myTimer() {
@@ -418,6 +421,102 @@ move = move2 = async function(e) {
         newMaze.draw();
         current.highlight(newMaze.columns);
     }
+
+
+
+  /*if (!generationComplete) return;
+  let key = e.key;
+  let row = current.rowNum;
+  let col = current.colNum;
+  if (current.goal) return;
+
+  switch (key) {
+    case "ArrowUp":
+      if (!current.walls.topWall) {
+        let next = newMaze.grid[row - 1][col];
+        current = next;
+        newMaze.draw();
+        current.highlight(newMaze.columns);
+        // not required if goal is in bottom right
+        if (current.goal) {completedGame = true; complete.style.display = "block";}
+      }
+      break;
+
+    case "ArrowRight":
+      if (!current.walls.rightWall) {
+        let next = newMaze.grid[row][col + 1];
+        current = next;
+        newMaze.draw();
+        current.highlight(newMaze.columns);
+        if (current.goal) {completedGame = true; complete.style.display = "block";}
+      }
+      break;
+
+    case "ArrowDown":
+      if (!current.walls.bottomWall) {
+        let next = newMaze.grid[row + 1][col];
+        current = next;
+        newMaze.draw();
+        current.highlight(newMaze.columns);
+        if (current.goal) {completedGame = true; complete.style.display = "block";}
+      }
+      break;
+
+    case "ArrowLeft":
+      if (!current.walls.leftWall) {
+        let next = newMaze.grid[row][col - 1];
+        current = next;
+        newMaze.draw();
+        current.highlight(newMaze.columns);
+        // not required if goal is in bottom right
+        if (current.goal) {completedGame = true; complete.style.display = "block";}
+      }
+      break;
+	  
+	 case "w":
+      if (!current.walls.topWall) {
+        let next = newMaze.grid[row - 1][col];
+        current = next;
+        newMaze.draw();
+        current.highlight(newMaze.columns);
+        // not required if goal is in bottom right
+        if (current.goal) {completedGame = true; complete.style.display = "block";}
+      }
+      break;
+
+    case "d":
+      if (!current.walls.rightWall) {
+        let next = newMaze.grid[row][col + 1];
+        current = next;
+        newMaze.draw();
+        current.highlight(newMaze.columns);
+        if (current.goal) {completedGame = true; complete.style.display = "block";}
+      }
+      break;
+
+    case "s":
+      if (!current.walls.bottomWall) {
+        let next = newMaze.grid[row + 1][col];
+        current = next;
+        newMaze.draw();
+        current.highlight(newMaze.columns);
+        if (current.goal) {completedGame = true; complete.style.display = "block";}
+      }
+      break;
+
+    case "a":
+      if (!current.walls.leftWall) {
+        let next = newMaze.grid[row][col - 1];
+        current = next;
+        newMaze.draw();
+        current.highlight(newMaze.columns);
+        // not required if goal is in bottom right
+        if (current.goal) {completedGame = true; complete.style.display = "block";}
+      }
+      break;
+	  
+  }
+  */
 }
 
 document.addEventListener("keydown", move);
