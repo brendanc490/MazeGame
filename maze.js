@@ -100,7 +100,6 @@ class Maze {
 
     while(predMatrix[this.rows - 1][this.columns - 1] == undefined){
       let curCell = discoveredQueue.shift();
-      console.log(typeof curCell);
       let curNeighbors = curCell.getNeighboursArray(); 
 
       for(let i = 0; i < curNeighbors.length; i++){
@@ -122,9 +121,9 @@ class Maze {
 
     output = output.reverse();
 
-    for(let i = 0; i < output.length; i++){
+    /*for(let i = 0; i < output.length; i++){
       console.log(output[i].rowNum + ", " + output[i].colNum);
-    }
+    }*/
 
     return output;
   }
@@ -264,7 +263,7 @@ class Cell {
 	let nextY;
 	let nextX;
 	ctx.fillStyle = "purple";
-	/*if (nextCell){
+	if (nextCell){
 		nextY = nextCell.rowNum;
 		nextX = nextCell.colNum;
 	} else {
@@ -300,7 +299,7 @@ class Cell {
       this.parentSize / columns + 10,
       this.parentSize / columns - 50,
     );
-	} */
+	} 
     
     ctx.fillRect(
       x,
