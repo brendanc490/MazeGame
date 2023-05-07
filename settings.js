@@ -13,6 +13,7 @@ let viewSolution = document.querySelector(".viewSolution");
 let textTimer = document.getElementsByClassName("timer");
 let textScore = document.getElementsByClassName("score");
 let textLevel = document.getElementsByClassName("level");
+let title = document.getElementsByClassName("title");
 
 
 let newMaze;
@@ -57,11 +58,28 @@ explore.addEventListener("click", () => {
   });
   
   viewSolution.addEventListener("click", () => {
-    let sol = newMaze.solution();
-    for(i = 0; i < sol.length; i++) {
-        sol[i].highlightSolution(sol[i+1],newMaze.columns);
-    }
+    async function handleViewSolution(){
+        let sol = newMaze.solution();
+        // Returns a Promise that resolves after "ms" Milliseconds
+        const timer = ms => new Promise(res => setTimeout(res, ms));
+        async function paintSolutionTile (tile,next) { // We need to wrap the loop into an async function for this to work
+            await timer(150) 
+            tile.highlightSolution(next,newMaze.columns);
+              ; // then the created Promise can be awaited
+            }
+        let i = 0;
+        while( i < sol.length) {
+            await paintSolutionTile(sol[i],sol[i+1]);
+            i++;
+        }
+      }
+      handleViewSolution();
+
   });
+
+
+
+
 
   function myTimer() {
     document.getElementById('timer').innerHTML = "Timer: " + sec;
@@ -77,7 +95,8 @@ explore.addEventListener("click", () => {
 
 function generateMaze(e) {
   e.preventDefault();
-  let mazeSize = 800;
+  
+  let mazeSize = Math.ceil(window.innerHeight*0.8) % 2 == 0 ? Math.ceil(window.innerHeight*0.8): Math.floor(window.innerHeight*0.8);
   let number = Math.ceil(0.297619*(gameNum*gameNum)+1.94048*(gameNum)+2.285710);
   form.style.display = "none";
   newMaze = new Maze(mazeSize, number, number);
@@ -90,6 +109,7 @@ function generateMaze(e) {
   newMaze.draw();
   newMaze.grid[0][0].highlight(newMaze.columns);
   current = newMaze.grid[0][0];
+  title[0].style.top = '-2%';
   textTimer[0].style.display = "block";
   textLevel[0].style.display = "block";
   textScore[0].style.display = "block";
