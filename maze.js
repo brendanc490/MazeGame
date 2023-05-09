@@ -258,55 +258,56 @@ class Cell {
 
   highlightSolution(nextCell, columns) {
     // Additions and subtractions added so the highlighted cell does cover the walls
-    let x = (this.colNum * this.parentSize) / columns + 25;
-    let y = (this.rowNum * this.parentSize) / columns + 25;
-	let nextY;
-	let nextX;
-	ctx.fillStyle = "purple";
-	if (nextCell){
-		nextY = nextCell.rowNum;
-		nextX = nextCell.colNum;
-	} else {
-		nextY = this.rowNum;
-		nextX = this.colNum;
-	}
-	console.log(nextY + "," + nextX);
-	if (nextY > this.rowNum){
-		ctx.fillRect(
-      x,
-      y,
-      this.parentSize / columns - 50,
-      this.parentSize / columns + 50,
-    );
-	} else if (nextY < this.rowNum) {
-		ctx.fillRect(
-      x,
-      (this.rowNum * this.parentSize) / columns - 50,
-      this.parentSize / columns - 50,
-	  this.parentSize / columns + 10,
-    );
-	} else if (nextX > this.colNum){
-		ctx.fillRect(
-      x,
-      y,
-      this.parentSize / columns + 50,
-      this.parentSize / columns - 50,
-    );
-	} else  if (nextX < this.colNum) {
-		ctx.fillRect(
-      (this.colNum * this.parentSize) / columns - 50,
-      y,
-      this.parentSize / columns + 10,
-      this.parentSize / columns - 50,
-    );
-	} 
-    
-    ctx.fillRect(
-      x,
-      y,
-      this.parentSize / columns - 50,
-      this.parentSize / columns - 50
-    );
+    let x = ((this.colNum * this.parentSize) / columns)+((this.parentSize / columns)/4);
+    let y = ((this.rowNum * this.parentSize) / columns)+((this.parentSize / columns)/4);
+    let nextY;
+    let nextX;
+    ctx.fillStyle = "purple";
+    if (nextCell){
+      nextY = nextCell.rowNum;
+      nextX = nextCell.colNum;
+    } else {
+      nextY = this.rowNum;
+      nextX = this.colNum;
+    }
+    console.log(nextY + "," + nextX);
+    if (nextY > this.rowNum){
+      ctx.fillRect(
+        x,
+        y,
+        (this.parentSize / columns)*(.5),
+        (this.parentSize / columns),
+      );
+    } else if (nextY < this.rowNum) {
+      ctx.fillRect(
+        x,
+        y-((this.parentSize / columns)/2),
+        (this.parentSize / columns)*(.5),
+        (this.parentSize / columns),
+      );
+    } else if (nextX > this.colNum){
+      ctx.fillRect(
+        x,
+        y,
+        (this.parentSize / columns),
+        (this.parentSize / columns)*(.5),
+      );
+      } else if (nextX < this.colNum) {
+      ctx.fillRect(
+        x-((this.parentSize / columns)/2),
+        y,
+        (this.parentSize / columns),
+        (this.parentSize / columns)*(.5),
+      );
+    }
+      
+      /*ctx.fillRect(
+        x,
+        y,
+        this.parentSize / columns - 50,
+        this.parentSize / columns - 50
+      );*/
+      ctx.fillRect(x,y,(this.parentSize / columns)*(.5),(this.parentSize / columns)*(.5));
   }
 
   removeWalls(cell1, cell2) {
